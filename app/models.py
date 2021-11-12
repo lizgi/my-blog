@@ -29,3 +29,11 @@ class User(UserMixin,db.Model):
         return check_password_hash(self.pass_secure,password)
     def _repr_(self):
         return f'Users {self.username}'
+
+class Quote:
+    """
+    Blueprint class for quotes consumed from API
+    """
+    def __init__(self, author, quote):
+        self.author = author
+        self.quote = quote        
