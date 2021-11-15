@@ -3,72 +3,78 @@
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  {% endblock %}
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+{% endblock %}
 
-  <!-- Content block -->
+<!-- Content block -->
 {%block content%}
 <div class="col-sm-12">
     <div class="panel panel-default">
         <div class="card">
-            <div class="panel-body" >
-            <blockquote class="blockquote mb-0 card-body">
-                <p>{{quote.quote}}</p>
-                <footer class="blockquote-footer">
-                    <cite title="Source Title" style="color:blueviolet;" >{{quote.author| upper}}</cite>
-                    
-                </footer>
-         
-                {% for blog in blogs %} 
-                <div class="col-md-4">
-                    <div class="text-centre">
-                        <div class="card text-white bg-success mb-4" style="max-width: 40rem; margin:2vw; padding:2vw;">
-                            <h4 class="card-header">Blog Title :{{blog.title}}</h4>
+            <div class="panel-body">
+                <blockquote class="blockquote mb-0 card-body">
+                    <p>{{quote.quote}}</p>
+                    <footer class="blockquote-footer">
+                        <cite title="Source Title" style="color:blueviolet;">{{quote.author| upper}}</cite>
 
-                            <div class="card-body">
-            
-                            <p class="card-title"> Blog Category: {{blog.category}}</p>
-            
-                            <p class="card-text">Blog Description: {{blog.content}}</p>
+                    </footer>
 
-                            <p class="card-text">Blogger: {{blog.created_by}}</p>
-            
-                            <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button class="btn-danger"><i class="fa fa-comment" aria-hidden="true"></i></button></a>        
-                     
+                    {% for blog in blogs %}
+                    <div class="col-md-4">
+                        <div class="text-centre">
+                            <div class="card text-white bg-success mb-4"
+                                style="max-width: 40rem; margin:2vw; padding:2vw;">
+                                <h4 class="card-header">Blog Title :{{blog.title}}</h4>
+
+                                <div class="card-body">
+
+                                    <p class="card-title"> Blog Category: {{blog.category}}</p>
+
+                                    <p class="card-text">Blog Description: {{blog.content}}</p>
+
+                                    <p class="card-text">Blogger: {{blog.created_by}}</p>
+
+                                    <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button
+                                            class="btn-danger"><i class="fa fa-comment"
+                                                aria-hidden="true"></i></button></a>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-                
-            {% endfor %}                
-                
-              </blockquote>
+
+                    {% endfor %}
+
+                </blockquote>
             </div>
             <form action="{{ url_for('main.subscribe')}}" class="search">
                 <div class="input-group">
                     <input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
                     <br>
                     <div class="input-group-append">
-                        <button class="btn-success" type="submit" >
+                        <button class="btn-success" type="submit">
                             <i class="fa fa-envelope"></i>
                         </button>
                     </div>
                 </div>
-            </form>            
-<footer> 
-    {% if current_user.is_authenticated %} 
-   <div class="container">
-    <div class = "row">
-        <div class="col-md-4"><a class="navbar-brand" href="/"> Blog !!! </a></div>
-        <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
-        {% else %}
-        <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
-        {%endif%}
-        <div class="col-md-3"><p>2021 Developer Elizabeth G  |  </p></div>
-    </div>
-   </div>
-   
-</footer>
+            </form>
+            <footer>
+                
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4"><a href="/">Boo Blog </a></div>
+                        <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
+                        
+                        <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
+                        
 
-{%endblock%} 
-          
+                    </div>
+                    <br>
+                    <div>
+                        <p class="text-center"> &copy Elizbeth 2021</p>
+                    </div>
+                </div>
+
+            </footer>
+
+            {%endblock%}
