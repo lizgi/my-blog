@@ -40,4 +40,19 @@
                 
               </blockquote>
             </div>
+<footer> 
+    {% if current_user.is_authenticated %} 
+   <div class="container">
+    <div class = "row">
+        <div class="col-md-4"><a class="navbar-brand" href="/"> Blog !!! </a></div>
+        <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
+        {% else %}
+        <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
+        {%endif%}
+        <div class="col-md-3"><p>2021 Developer Elizabeth G  |  </p></div>
+    </div>
+   </div>
+   
+</footer>
+
 {%endblock%}           
