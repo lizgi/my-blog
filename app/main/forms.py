@@ -16,20 +16,14 @@ class UpdateProfileForm(FlaskForm):
 
 class BlogForm(FlaskForm):
     blog_title = StringField('Blog title', validators=[Required()])
-    category = SelectField('Blog category',choices=[('Select a category','Select a category'),('Fashion', 'Fashion'),('Sports','Sports'),('Travel','Travel'),('Tech','Tech')], validators=[Required()])
+    category = SelectField('Blog category',choices=[('Select a category','Select a category'),('Wealth', 'Wealth'),('Marriage','Marriage'),('Adventure','Adventure'),('Beauty','Beauty')], validators=[Required()])
     content = TextAreaField('Body', validators=[Required()])
     created_by= StringField('Blog author',validators=[Required()])
     submit = SubmitField('Submit')
 
 
-
-class PitchForm(FlaskForm):
-    pitch_title = StringField('Pitch title', validators=[Required()])
-    pitch_category = SelectField('Pitch category',choices=[('Select a category','Select a category'),('Pickup lines', 'Pickup lines'),('Interview','Interview'),('Religion','Religion'),('Business','Business')], validators=[Required()])
-    pitch_content = StringField('What is in your mind?')
-    submit = SubmitField('Submit')
     
 class CommentForm(FlaskForm):
     comment = TextAreaField('Body', validators=[Required()])
     submit = SubmitField('Submit')
-    
+
