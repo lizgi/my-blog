@@ -2,8 +2,10 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block styles%}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css">
-{% endblock styles%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+{% endblock %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -35,6 +37,33 @@
     </div>
   </div>
   </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Category</th>
+        <th scope="col">Content</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col">Delete</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for blog in blogs %}
+
+      <tr>
+        <th scope="row">{{blog.title}}</th>
+        <td>{{blog.category}}</td>
+        <td>{{blog.content}}</td>
+        <td>{{blog.created_by| capitalize}}</td>
+        <td>{{blog.date_posted.strftime('%Y-%m-%d')}}</td>
+        <td><a href="{{ url_for('main.delete_blog',id=blog.id)}}" class="text-danger" title="Delete Blog" ><i class="far fa-trash-alt"></i></a></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
   <footer> 
     {% if current_user.is_authenticated %} 
    <div class="container">

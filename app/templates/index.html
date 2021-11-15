@@ -1,8 +1,12 @@
-{% extends 'base.html' %}{% block styles%}
+{% extends 'base.html' %}
+{% block styles%}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" type="text/css">
-{% endblock styles%}
-<!-- Content block -->
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+  integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  {% endblock %}
+
+  <!-- Content block -->
 {%block content%}
 <div class="col-sm-12">
     <div class="panel panel-default">
@@ -29,7 +33,7 @@
 
                             <p class="card-text">Blogger: {{blog.created_by}}</p>
             
-                            <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button class="btn-success">Add a comment</button></a>        
+                            <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button class="btn-danger"><i class="fa fa-comment" aria-hidden="true"></i></button></a>        
                      
                         </div>
                     </div>
@@ -40,6 +44,17 @@
                 
               </blockquote>
             </div>
+            <form action="{{ url_for('main.subscribe')}}" class="search">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
+                    <br>
+                    <div class="input-group-append">
+                        <button class="btn-success" type="submit" >
+                            <i class="fa fa-envelope"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>            
 <footer> 
     {% if current_user.is_authenticated %} 
    <div class="container">
@@ -55,4 +70,5 @@
    
 </footer>
 
-{%endblock%}           
+{%endblock%} 
+          

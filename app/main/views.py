@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort, flash
 from . import main
-from ..models import User, Quote,Blog,Comment
+from ..models import User, Quote,Blog,Comment,Subscriber
 from flask_login import login_required, current_user
 from .. import db,photos
 from ..requests import get_quote
@@ -41,9 +41,11 @@ def new_blog():
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username=uname).first()
+    blog_form = BlogForm()
+    all_blogs = Blog.query.order_by(Blog.date_posted).all()
     if user is None:
         abort(404)
-    return render_template("profile/profile.html", user=user)
+    return render_template("profile/profile.html", user=user, blogs = all_blogs)
 
 
 @main.route('/user/<uname>/update', methods=['GET', 'POST'])
@@ -102,4 +104,47 @@ def blog_details(id):
         db.session.commit()
         form.comment.data = ''
         flash('Your comment has been posted successfully!')
-    return render_template('comments.html', blog=blogs, comment=comments, comment_form=form)    
+    return render_template('comments.html', blog=blogs, comment=comments, comment_form=form) 
+
+# delete comment
+@main.route('/comment/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_comment(id):
+    """
+        View delete comment function that returns the delete comment page and its data
+    """
+    comment = Comment.query.filter_by(id=id).first()
+    db.session.delete(comment)
+    db.session.commit()
+   
+    
+  
+    flash('You have successfully deleted the comment', 'success')
+    return redirect(url_for('main.profile', uname=current_user.username)) 
+
+@main.route('/blog/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_blog(id):
+    """
+        View delete post function that returns the delete post page and its data
+    """
+    blog = Blog.query.get_or_404(id)
+    db.session.delete(blog)
+    db.session.commit()
+    flash('You have successfully deleted the post', 'success')
+    return redirect(url_for('main.index')) 
+
+@main.route('/subscribe', methods=['GET', 'POST'])
+def subscribe():
+    """
+         subscribe function that subscribes the user to the post
+    """
+    email = request.args.get('email')
+    new_subscriber = Subscriber(email=email)
+    db.session.add(new_subscriber)
+    db.session.commit()
+    flash('Email submitted successfully', 'success')
+    return redirect(url_for('main.index'))    
+
+
+
