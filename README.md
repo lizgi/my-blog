@@ -10,9 +10,10 @@ Is a flask application that allows one to create a personal blogging website whe
 
 ## Live Link
 
-
+https://boobloggy.herokuapp.com/
 
 ## User Story
+
 As a user;
 
 1.i would like to view the blog posts on the site.
