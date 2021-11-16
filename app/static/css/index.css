@@ -11,12 +11,24 @@ box-shadow: 0 0 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.4), 0 0 10px rgb
     margin-left: 5rem;
  }
 
+ body{
+    background-image: url("https://thumbs.dreamstime.com/b/blue-mystic-abstract-mandala-background-purple-color-bohemian-138111376.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+ }
+
+.footer1{
+     background-color:wheat;
+ }
+
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: aqua;
+    background-color:#dab6fc;
 
 }
 .link{

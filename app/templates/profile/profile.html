@@ -64,19 +64,30 @@
       
     </tbody>
   </table>
-  <footer> 
-    {% if current_user.is_authenticated %} 
-   <div class="container">
-    <div class = "row">
-        <div class="col-md-4"><a class="navbar-brand" href="/"> Blog !!! </a></div>
-        <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
-        {% else %}
-        <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
-        {%endif%}
-        <div class="col-md-3"><p>2021 Developer Elizabeth G  |  </p></div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <footer>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"><a href="/">Boo Blog </a></div>
+            <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
+
+            <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
+
+
+        </div>
+        <br>
+        <div>
+            <p class="text-center"> &copy Elizbeth 2021</p>
+        </div>
     </div>
-   </div>
-   
+
 </footer>
 {% endblock %} 
 

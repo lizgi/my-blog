@@ -8,73 +8,76 @@
 
 <!-- Content block -->
 {%block content%}
-<div class="col-sm-12">
-    <div class="panel panel-default">
-        <div class="card">
-            <div class="panel-body">
-                <blockquote class="blockquote mb-0 card-body">
-                    <p>{{quote.quote}}</p>
-                    <footer class="blockquote-footer">
-                        <cite title="Source Title" style="color:blueviolet;">{{quote.author| upper}}</cite>
-
-                    </footer>
-
-                    {% for blog in blogs %}
-                    <div class="col-md-4">
-                        <div class="text-centre">
-                            <div class="card text-white bg-success mb-4"
-                                style="max-width: 40rem; margin:2vw; padding:2vw;">
-                                <h4 class="card-header">Blog Title :{{blog.title}}</h4>
-
-                                <div class="card-body">
-
-                                    <p class="card-title"> Blog Category: {{blog.category}}</p>
-
-                                    <p class="card-text">Blog Description: {{blog.content}}</p>
-
-                                    <p class="card-text">Blogger: {{blog.created_by}}</p>
-
-                                    <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button
-                                            class="btn-danger"><i class="fa fa-comment"
-                                                aria-hidden="true"></i></button></a>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {% endfor %}
-
-                </blockquote>
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="card">
+                <div class="panel-body">
+                    <blockquote class="blockquote mb-0 card-body">
+                        <p>{{quote.quote}}</p>
+                        <footer1 class="blockquote-footer">
+                            <cite title="Source Title" style="color:blue;">{{quote.author| upper}}</cite>
+                            </footer>
+                    </blockquote>
+                </div>
             </div>
-            <form action="{{ url_for('main.subscribe')}}" class="search">
-                <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
-                    <br>
-                    <div class="input-group-append">
-                        <button class="btn-success" type="submit">
-                            <i class="fa fa-envelope"></i>
-                        </button>
-                    </div>
+        </div>
+    </div>
+
+    {% for blog in blogs %}
+    <div class="col-md-4">
+        <div class="text-centre">
+            <div class="card text-white bg-success mb-4" style="max-width: 40rem; margin:2vw; padding:2vw;">
+                <h4 class="card-header">Blog Title :{{blog.title}}</h4>
+
+                <div class="card-body">
+
+                    <p class="card-title"> Blog Category: {{blog.category}}</p>
+
+                    <p class="card-text">Blog Description: {{blog.content}}</p>
+
+                    <p class="card-text">Blogger: {{blog.created_by}}</p>
+
+                    <a href="{{ url_for('main.blog_details', id = blog.id)}}"><button class="btn-danger"><i
+                                class="fa fa-comment" aria-hidden="true"></i></button></a>
+
                 </div>
-            </form>
-            <footer>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4"><a href="/">Boo Blog </a></div>
-                        <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
-                        
-                        <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
-                        
+            </div>
+        </div>
+    </div>
 
-                    </div>
-                    <br>
-                    <div>
-                        <p class="text-center"> &copy Elizbeth 2021</p>
-                    </div>
-                </div>
+    {% endfor %}
 
-            </footer>
 
-            {%endblock%}
+    <form action="{{ url_for('main.subscribe')}}" class="search">
+        <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your Email" name="email" required>
+            <br>
+            <div class="input-group-append">
+                <button class="btn-success" type="submit">
+                    <i class="fa fa-envelope"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <footer>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><a href="/">Boo Blog </a></div>
+                <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
+
+                <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
+
+
+            </div>
+            <br>
+            <div>
+                <p class="text-center"> &copy Elizbeth 2021</p>
+            </div>
+        </div>
+
+    </footer>
+
+</div>
+{%endblock%}

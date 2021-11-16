@@ -8,26 +8,46 @@
   integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 {% endblock %}
 
-  {% block content %}
+{% block content %}
+
 <body>
   {% for message in get_flashed_messages() %}
-  <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      {{ message }}
+  <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
   </div>
   {% endfor %}
   <div class="container">
 
-      {{wtf.quick_form(comment_form)}}
+    {{wtf.quick_form(comment_form)}}
 
   </div>
 
   {% for comment in comment %}
 
   <p>{{ comment.comment }}</p>
-  <a href="{{ url_for('main.delete_comment',id=comment.id)}}" style="margin-left: 10px;;" class="text-success" title="Delete Post">
+  <a href="{{ url_for('main.delete_comment',id=comment.id)}}" style="margin-left: 10px;;" class="text-danger"
+    title="Delete Post">
     <small><i class="fa fa-trash"></i></small>
-  {% endfor %}
+    {% endfor %}
 </body>
+<footer>
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4"><a href="/">Boo Blog </a></div>
+          <div class="col-md-4"><a href="{{url_for('auth.logout')}}">Sign out</a></div>
+
+          <div class="col-md-4"><a href="{{url_for('auth.login')}}">Sign in</a></div>
+
+
+      </div>
+      <br>
+      <div>
+          <p class="text-center"> &copy Elizbeth 2021</p>
+      </div>
+  </div>
+
+</footer>
 
 {%endblock%}
