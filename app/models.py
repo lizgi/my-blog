@@ -114,6 +114,7 @@ class Subscriber(db.Model):
 
     def _repr_(self):
         return f'Subscriber {self.email}'
+
         
 
         
